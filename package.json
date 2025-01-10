@@ -1,6 +1,6 @@
 {
   "name": "ryd-components",
-  "version": "0.0.14",
+  "version": "0.0.21",
   "type": "module",
   "repository": {
     "type": "git",
@@ -9,27 +9,30 @@
   "files": [
     "dist"
   ],
-  "main": "dist/index.js",
-  "module": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "./dist/index.umd.js",
+  "module": "./dist/index.es.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/ryd-components.js",
-      "require": "./dist/ryd-components.umd.cjs"
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.umd.js",
+      "default": "./dist/index.es.js"
     }
   },
   "scripts": {
     "dev": "vite",
-    "build": "vite build && vue-tsc --emitDeclarationOnly",
+    "build": "vite build && vue-tsc --emitDeclarationOnly && node fix-types.cjs",
     "preview": "vite preview"
   },
   "peerDependencies": {
     "vue": ">=3.3.0"
   },
   "devDependencies": {
+    "@types/node": "^22.10.2",
     "@vitejs/plugin-vue": "^5.0.4",
-    "typescript": "^5.2.2",
+    "rollup-plugin-dts": "^6.1.1",
+    "typescript": "^5.7.2",
     "vite": "^5.1.4",
-    "vue-tsc": "^1.8.27"
+    "vue-tsc": "^0.29.8"
   }
 }
